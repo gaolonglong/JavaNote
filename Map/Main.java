@@ -17,11 +17,11 @@ public class Main {
         //删除
         removeMapData(map, scanner);
         //查询
-        queryMapDate(map, scanner);
+        queryMapDate(map);
     }
 
-    private static void queryMapDate(Map<String, Student> map, Scanner scanner) {
-        //使用keySet遍历
+    private static void queryMapDate(Map<String, Student> map) {
+        //使用keySet遍历（效率低）
         Set<String> keySet = map.keySet();
         System.out.println("所有的学生信息如下：");
         for (String key : keySet) {
@@ -29,6 +29,7 @@ public class Main {
             System.out.print("学号：" + key + " 姓名：" + student.getName() + " ");
         }
         System.out.println();
+        System.out.println("---------------------------");
         //使用keySet和Iterator遍历
         Set<String> keySet2 = map.keySet();
         Iterator<String> iterator2 = keySet2.iterator();
@@ -39,20 +40,35 @@ public class Main {
             System.out.print("学号：" + key + " 姓名：" + student.getName() + " ");
         }
         System.out.println();
-        //使用entrySet遍历
+        System.out.println("---------------------------");
+        //使用entrySet遍历（推荐）
         Set<Map.Entry<String, Student>> entrySet = map.entrySet();
         System.out.println("所有的学生信息如下3：");
         for (Map.Entry<String, Student> entry : entrySet) {
             System.out.print("学号：" + entry.getKey() + " 姓名：" + entry.getValue().getName() + " ");
         }
         System.out.println();
-        //使用Iterator遍历（推荐）
+        System.out.println("---------------------------");
+        //使用Iterator遍历
         Set<Map.Entry<String, Student>> entrySet2 = map.entrySet();
         Iterator<Map.Entry<String, Student>> iterator = entrySet2.iterator();
         System.out.println("所有的学生信息如下4：");
         while (iterator.hasNext()){
             Map.Entry<String, Student> entry = iterator.next();
             System.out.print("学号：" + entry.getKey() + " 姓名：" + entry.getValue().getName() + " ");
+        }
+        System.out.println();
+        System.out.println("---------------------------");
+        //只遍历键或值
+        Set<String> keySet3 = map.keySet();
+        for (String key : keySet3){
+            System.out.print("学号：" + key + " ");
+        }
+        System.out.println();
+        System.out.println("---------------------------");
+        Collection<Student> students = map.values();
+        for (Student student : students){
+            System.out.print("姓名：" + student.getName() + " ");
         }
     }
 
