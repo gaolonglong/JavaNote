@@ -1,9 +1,6 @@
 package com.gaolonglong;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
 
@@ -32,10 +29,29 @@ public class Main {
             System.out.print("学号：" + key + " 姓名：" + student.getName() + " ");
         }
         System.out.println();
+        //使用keySet和Iterator遍历
+        Set<String> keySet2 = map.keySet();
+        Iterator<String> iterator2 = keySet2.iterator();
+        System.out.println("所有的学生信息如下2：");
+        while (iterator2.hasNext()){
+            String key = iterator2.next();
+            Student student = map.get(key);
+            System.out.print("学号：" + key + " 姓名：" + student.getName() + " ");
+        }
+        System.out.println();
         //使用entrySet遍历
         Set<Map.Entry<String, Student>> entrySet = map.entrySet();
-        System.out.println("所有的学生信息如下2：");
-        for (Map.Entry<String,Student> entry : entrySet){
+        System.out.println("所有的学生信息如下3：");
+        for (Map.Entry<String, Student> entry : entrySet) {
+            System.out.print("学号：" + entry.getKey() + " 姓名：" + entry.getValue().getName() + " ");
+        }
+        System.out.println();
+        //使用Iterator遍历（推荐）
+        Set<Map.Entry<String, Student>> entrySet2 = map.entrySet();
+        Iterator<Map.Entry<String, Student>> iterator = entrySet2.iterator();
+        System.out.println("所有的学生信息如下4：");
+        while (iterator.hasNext()){
+            Map.Entry<String, Student> entry = iterator.next();
             System.out.print("学号：" + entry.getKey() + " 姓名：" + entry.getValue().getName() + " ");
         }
     }
