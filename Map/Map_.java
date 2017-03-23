@@ -1,12 +1,8 @@
 package com.gaolonglong;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.*;
 
-public class Main {
+public class Map_ {
 
     public static void main(String[] args) {
         System.out.println("Hello Java!");
@@ -22,18 +18,6 @@ public class Main {
         removeMapData(map, scanner);
         //查询
         queryMapDate(map);
-        try {
-            RandomAccessFile randomAccessFile = new RandomAccessFile(new File(""),"r");
-            randomAccessFile.getFilePointer();
-            randomAccessFile.seek(233);
-            randomAccessFile.length();
-            randomAccessFile.write("".getBytes());
-            //参考：http://blog.csdn.net/czplplp_900725/article/details/37809579
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private static void queryMapDate(Map<String, Student> map) {
@@ -46,6 +30,7 @@ public class Main {
         }
         System.out.println();
         System.out.println("---------------------------");
+
         //使用keySet和Iterator遍历
         Set<String> keySet2 = map.keySet();
         Iterator<String> iterator2 = keySet2.iterator();
@@ -57,6 +42,7 @@ public class Main {
         }
         System.out.println();
         System.out.println("---------------------------");
+
         //使用entrySet遍历（推荐）
         Set<Map.Entry<String, Student>> entrySet = map.entrySet();
         System.out.println("所有的学生信息如下3：");
@@ -65,6 +51,7 @@ public class Main {
         }
         System.out.println();
         System.out.println("---------------------------");
+
         //使用Iterator遍历
         Set<Map.Entry<String, Student>> entrySet2 = map.entrySet();
         Iterator<Map.Entry<String, Student>> iterator = entrySet2.iterator();
@@ -75,6 +62,7 @@ public class Main {
         }
         System.out.println();
         System.out.println("---------------------------");
+
         //只遍历键或值
         Set<String> keySet3 = map.keySet();
         for (String key : keySet3){
@@ -82,6 +70,7 @@ public class Main {
         }
         System.out.println();
         System.out.println("---------------------------");
+
         Collection<Student> students = map.values();
         for (Student student : students){
             System.out.print("姓名：" + student.getName() + " ");
