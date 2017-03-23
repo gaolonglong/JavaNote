@@ -1,5 +1,9 @@
 package com.gaolonglong;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.*;
 
 public class Main {
@@ -18,6 +22,18 @@ public class Main {
         removeMapData(map, scanner);
         //查询
         queryMapDate(map);
+        try {
+            RandomAccessFile randomAccessFile = new RandomAccessFile(new File(""),"r");
+            randomAccessFile.getFilePointer();
+            randomAccessFile.seek(233);
+            randomAccessFile.length();
+            randomAccessFile.write("".getBytes());
+            //参考：http://blog.csdn.net/czplplp_900725/article/details/37809579
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void queryMapDate(Map<String, Student> map) {
