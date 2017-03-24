@@ -25,6 +25,9 @@ public class IO {
         //DataInputStream,DataOutputStream（用来读取Java基本数据类型）
         //使用包装流读取文件拷贝，一个8M的文件花费了896ms
         copyMp3ByBuffer(new File("I:\\io\\a.mp3"),new File("I:\\io\\e.mp3"));
+
+        //复制指定文件夹下的所有文件和文件夹（包括子文件夹的文件和文件夹）到指定文件夹
+        copyDir(new File("F:\\git"), new File("F:\\git2"));
     }
 
     //一个个字节读取
@@ -103,5 +106,35 @@ public class IO {
         bos.close();
         long l2 = System.currentTimeMillis();
         System.out.println("使用buff包装流读取文件花费了：" + (l2 - l1) + "ms");
+    }
+
+    ////复制指定文件夹下的所有文件和文件夹（包括子文件夹的文件和文件夹）到指定文件夹
+    public static void copyDir(File src, File des) throws IOException {
+        des.mkdirs();
+        if (src != null) {
+            if (src.isFile() || src.listFiles().length == 0) {
+                return;
+            } else {
+                File[] files = src.listFiles();
+                for (File file : files) {
+                    if (file.isFile()) {
+                        createFile(file,des);
+                    }else {
+                        copyDir(file,new File(des,file.getName()));
+                    }
+                }
+            }
+        }
+    }
+
+    public static void createFile(File file, File des) throws IOException {
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(des, file.getName())));
+        int len;
+        while ((len = bis.read()) != -1) {
+            bos.write(len);
+        }
+        bis.close();
+        bos.close();
     }
 }
